@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6DFDC0A7F34ACBEB08E546E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC71486F2EC0FD9E70FD5 /* LaunchScreen.storyboard */; };
+		6DFDC224D0271758099F2496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC862FBF20EF24C6B256D /* AppDelegate.m */; };
+		6DFDC2D4F6640A51204297D9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC90D4673DAD06829961A /* Info.plist */; };
+		6DFDC4234780FAA045C524F5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC9006B395BBD8F76B0FE /* Info.plist */; };
+		6DFDC47DACE5DBED1059824F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDCBB080BF5C9E047DC689 /* Assets.xcassets */; };
+		6DFDC8DEDB4F5EF9BE1DDC4D /* RWPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCDB4932875AF1D8C64A1 /* RWPromise.m */; };
+		6DFDC9AB724AE7648640742E /* RWPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC33563E36967319AF1B3 /* RWPromiseTests.m */; };
+		6DFDCA6A7D86057531D3A466 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC2BB8DC17DCE1B8FC82D /* Main.storyboard */; };
+		6DFDCB225497EF3BE1213CAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC0D7EA675F2CF25C1C17 /* main.m */; };
+		6DFDCCC66983E77BE9AB5A36 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC7B08D0C350D116E4EB5 /* ViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6DFDCE6EDFC2FDFF848DF833 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DFDC58F70518388EBEAA73A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DFDC99486E95947DF5814E6;
+			remoteInfo = RWPromise;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6DFDC0D7EA675F2CF25C1C17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6DFDC33563E36967319AF1B3 /* RWPromiseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWPromiseTests.m; sourceTree = "<group>"; };
+		6DFDC63D4F9DFDA74771EC60 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6DFDC7B08D0C350D116E4EB5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6DFDC862FBF20EF24C6B256D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6DFDC8FD4CBC3C89553B4832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6DFDC9006B395BBD8F76B0FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		6DFDC90D4673DAD06829961A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		6DFDCA5288C414E58536A7A7 /* RWPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPromise.h; sourceTree = "<group>"; };
+		6DFDCAFF146FFBFACFF3A206 /* RWPromiseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RWPromiseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFDCBB080BF5C9E047DC689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6DFDCCA3D8BEE73F654A2BD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6DFDCDB4932875AF1D8C64A1 /* RWPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWPromise.m; sourceTree = "<group>"; };
+		6DFDCE95AA0A1B48AE140827 /* RWPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RWPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFDCF72A63E6C2C61204CCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6DFDC7A6DE232D8FF864ED2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDC9861ED22580425FFD3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6DFDC09611D798FE2A6F4277 /* RWPromise */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDC9006B395BBD8F76B0FE /* Info.plist */,
+				6DFDCBB080BF5C9E047DC689 /* Assets.xcassets */,
+				6DFDC71486F2EC0FD9E70FD5 /* LaunchScreen.storyboard */,
+				6DFDCE9F7368FF16EEF37E84 /* Supporting Files */,
+				6DFDCCA3D8BEE73F654A2BD9 /* AppDelegate.h */,
+				6DFDC862FBF20EF24C6B256D /* AppDelegate.m */,
+				6DFDC2BB8DC17DCE1B8FC82D /* Main.storyboard */,
+				6DFDC63D4F9DFDA74771EC60 /* ViewController.h */,
+				6DFDC7B08D0C350D116E4EB5 /* ViewController.m */,
+				6DFDCC1EDEA240574781DC75 /* Class */,
+			);
+			path = RWPromise;
+			sourceTree = "<group>";
+		};
+		6DFDCA351F42BC18B7BD8FEE = {
+			isa = PBXGroup;
+			children = (
+				6DFDCDB7ED9B5D7F852CB296 /* Products */,
+				6DFDC09611D798FE2A6F4277 /* RWPromise */,
+				6DFDCC284151399B503FEABE /* RWPromiseTests */,
+			);
+			sourceTree = "<group>";
+		};
+		6DFDCC1EDEA240574781DC75 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDCDB4932875AF1D8C64A1 /* RWPromise.m */,
+				6DFDCA5288C414E58536A7A7 /* RWPromise.h */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		6DFDCC284151399B503FEABE /* RWPromiseTests */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDC90D4673DAD06829961A /* Info.plist */,
+				6DFDC33563E36967319AF1B3 /* RWPromiseTests.m */,
+			);
+			path = RWPromiseTests;
+			sourceTree = "<group>";
+		};
+		6DFDCDB7ED9B5D7F852CB296 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDCE95AA0A1B48AE140827 /* RWPromise.app */,
+				6DFDCAFF146FFBFACFF3A206 /* RWPromiseTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6DFDCE9F7368FF16EEF37E84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDC0D7EA675F2CF25C1C17 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6DFDC99486E95947DF5814E6 /* RWPromise */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DFDC66D485385F715AA0E08 /* Build configuration list for PBXNativeTarget "RWPromise" */;
+			buildPhases = (
+				6DFDC6B283767383AEB36AB6 /* Sources */,
+				6DFDC7A6DE232D8FF864ED2E /* Frameworks */,
+				6DFDC813B29E7B727B62BEF8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RWPromise;
+			productName = RWPromise;
+			productReference = 6DFDCE95AA0A1B48AE140827 /* RWPromise.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6DFDCA2957A208C94FDDB60C /* RWPromiseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DFDC249F9A3981346D3EEA5 /* Build configuration list for PBXNativeTarget "RWPromiseTests" */;
+			buildPhases = (
+				6DFDCE1F71BAC25848DA51B4 /* Sources */,
+				6DFDC9861ED22580425FFD3C /* Frameworks */,
+				6DFDCCE41BEE84853C4031F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DFDC51DD4D7EED7CA293440 /* PBXTargetDependency */,
+			);
+			name = RWPromiseTests;
+			productName = RWPromiseTests;
+			productReference = 6DFDCAFF146FFBFACFF3A206 /* RWPromiseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6DFDC58F70518388EBEAA73A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = RW;
+			};
+			buildConfigurationList = 6DFDC34C08D1F4FEAE9C427E /* Build configuration list for PBXProject "RWPromise" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6DFDCA351F42BC18B7BD8FEE;
+			productRefGroup = 6DFDCDB7ED9B5D7F852CB296 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6DFDC99486E95947DF5814E6 /* RWPromise */,
+				6DFDCA2957A208C94FDDB60C /* RWPromiseTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6DFDC813B29E7B727B62BEF8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDC4234780FAA045C524F5 /* Info.plist in Resources */,
+				6DFDC47DACE5DBED1059824F /* Assets.xcassets in Resources */,
+				6DFDC0A7F34ACBEB08E546E0 /* LaunchScreen.storyboard in Resources */,
+				6DFDCA6A7D86057531D3A466 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDCCE41BEE84853C4031F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDC2D4F6640A51204297D9 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6DFDC6B283767383AEB36AB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDCB225497EF3BE1213CAF /* main.m in Sources */,
+				6DFDC224D0271758099F2496 /* AppDelegate.m in Sources */,
+				6DFDCCC66983E77BE9AB5A36 /* ViewController.m in Sources */,
+				6DFDC8DEDB4F5EF9BE1DDC4D /* RWPromise.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDCE1F71BAC25848DA51B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDC9AB724AE7648640742E /* RWPromiseTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DFDC51DD4D7EED7CA293440 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DFDC99486E95947DF5814E6 /* RWPromise */;
+			targetProxy = 6DFDCE6EDFC2FDFF848DF833 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6DFDC2BB8DC17DCE1B8FC82D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DFDCF72A63E6C2C61204CCA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6DFDC71486F2EC0FD9E70FD5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DFDC8FD4CBC3C89553B4832 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6DFDC1844172E3CD12125B21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RWPromise/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RW.RWPromise;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6DFDC38C29713EA388ED47F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6DFDC4C72D3FB25E01E1C61E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RWPromise.app/RWPromise";
+				INFOPLIST_FILE = RWPromiseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RW.RWPromiseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		6DFDC5FDD4AFB7E4AF345AF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RWPromise/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RW.RWPromise;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6DFDCC210C1BC56A119D1C8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RWPromise.app/RWPromise";
+				INFOPLIST_FILE = RWPromiseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RW.RWPromiseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+		6DFDCF7DFF8027913F0D515F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6DFDC249F9A3981346D3EEA5 /* Build configuration list for PBXNativeTarget "RWPromiseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFDC4C72D3FB25E01E1C61E /* Debug */,
+				6DFDCC210C1BC56A119D1C8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6DFDC34C08D1F4FEAE9C427E /* Build configuration list for PBXProject "RWPromise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFDC38C29713EA388ED47F4 /* Debug */,
+				6DFDCF7DFF8027913F0D515F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DFDC66D485385F715AA0E08 /* Build configuration list for PBXNativeTarget "RWPromise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFDC5FDD4AFB7E4AF345AF9 /* Debug */,
+				6DFDC1844172E3CD12125B21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6DFDC58F70518388EBEAA73A /* Project object */;
+}

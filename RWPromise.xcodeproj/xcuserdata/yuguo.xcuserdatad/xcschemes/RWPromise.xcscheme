@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6DFDC99486E95947DF5814E6"
+               BuildableName = "RWPromise.app"
+               BlueprintName = "RWPromise"
+               ReferencedContainer = "container:RWPromise.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6DFDC99486E95947DF5814E6"
+            BuildableName = "RWPromise.app"
+            BlueprintName = "RWPromise"
+            ReferencedContainer = "container:RWPromise.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+</Scheme>
