@@ -32,14 +32,16 @@
 - (instancetype)init:(RWPromiseBlock)initBlock;
 @end
 
-@interface RWAllPromise:RWPromise
-- (instancetype)initWithAllPromises:(NSArray<RWPromise*> *)promises;
-@property(nonatomic, strong) NSMutableSet<RWPromise*> * promises;
+@interface RWAllPromise : RWPromise
+- (instancetype)initWithAllPromises:(NSArray<RWPromise *> *)promises;
+
+@property(nonatomic, strong) NSMutableSet<RWPromise *> *promises;
 @end
 
-@interface RWRacePromise:RWPromise
-- (instancetype)initWithRacePromises:(NSArray<RWPromise*> *)promises;
-@property(nonatomic, strong) NSMutableSet<RWPromise*> * promises;
+@interface RWRacePromise : RWPromise
+- (instancetype)initWithRacePromises:(NSArray<RWPromise *> *)promises;
+
+@property(nonatomic, strong) NSMutableSet<RWPromise *> *promises;
 @end
 
 
@@ -66,6 +68,36 @@
 + (RWPromise *)race:(NSArray<RWPromise *> *)promises {
     return [[RWRacePromise alloc] initWithRacePromises:promises];
 }
+
++ (RWPromise *)resolve:(id)value {
+    if ([value isKindOfClass:[RWPromise class]]) {
+        return value;
+    } else {
+        return [RWAllPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(value);
+        }];
+    }
+}
+
++ (RWPromise *)reject:(id)value {
+    if ([value isKindOfClass:[RWPromise class]]) {
+        return value;
+    } else {
+        return [RWAllPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            reject([NSError errorWithDomain:@"RWPromise" code:1 userInfo:@{@"value" : value}]);
+        }];
+    }
+}
+
+//+ (RWPromise *(^)(RWRunBlock))resolve {
+//
+//    return ^RWPromise *(RWRunBlock pFunction) {
+//
+//    };
+//
+//
+//}
+
 
 - (instancetype)init:(RWPromiseBlock)initBlock {
     self = [super init];
@@ -212,13 +244,11 @@
 @end
 
 
-
-@implementation RWAllPromise
-{
+@implementation RWAllPromise {
     NSMutableArray *_values;
 }
 
-- (instancetype)initWithAllPromises:(NSArray<RWPromise*> *)promises{
+- (instancetype)initWithAllPromises:(NSArray<RWPromise *> *)promises {
     self = [super init];
     _values = @[].mutableCopy;
     self.promises = [NSMutableSet set];
@@ -227,9 +257,9 @@
 
     [promises enumerateObjectsUsingBlock:^(RWPromise *promise, NSUInteger idx, BOOL *stop) {
         [promise addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
-        if (promise.state == RWPromiseStatePending){
+        if (promise.state == RWPromiseStatePending) {
             [self.promises addObject:promise];
-        }else{
+        } else {
 
         }
     }];
@@ -287,7 +317,7 @@
             [_values addObject:[(RWPromise *) object value]];
         }
 
-        if (self.promises.count == 0){
+        if (self.promises.count == 0) {
             self.resolveBlock(_values);
         }
     }
@@ -295,12 +325,11 @@
 
 @end
 
-@implementation RWRacePromise
-{
+@implementation RWRacePromise {
     //NSMutableArray *_values;
 }
 
-- (instancetype)initWithRacePromises:(NSArray<RWPromise*> *)promises{
+- (instancetype)initWithRacePromises:(NSArray<RWPromise *> *)promises {
     self = [super init];
     self.promises = [NSMutableSet set];
     self.state = RWPromiseStatePending;
@@ -308,9 +337,9 @@
 
     [promises enumerateObjectsUsingBlock:^(RWPromise *promise, NSUInteger idx, BOOL *stop) {
         [promise addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
-        if (promise.state == RWPromiseStatePending){
+        if (promise.state == RWPromiseStatePending) {
             [self.promises addObject:promise];
-        }else{
+        } else {
 
         }
     }];
@@ -368,7 +397,7 @@
             //[_values addObject:[(RWPromise *) object value]];
         }
 
-        if (self.promises.count == 0){
+        if (self.promises.count == 0) {
             self.rejectBlock([NSError errorWithDomain:@"race" code:2 userInfo:@{}]);
         }
     }
@@ -408,13 +437,13 @@ __attribute__((constructor)) static void func() {
 //            //return nil;
 //        })
 
-        NSArray * ps = @[[RWPromise timeout:1],[RWPromise timeout:3],p1];
-        [RWPromise race:ps].then(^(id value){
-            NSLog(@"All!");
-        })
-        .catch(^(NSError *e){
-            NSLog(e);
-        });
+        NSArray *ps = @[[RWPromise timeout:1], [RWPromise timeout:3], p1];
+        [RWPromise race:ps].then(^(id value) {
+                    NSLog(@"All!");
+                })
+                .catch(^(NSError *e) {
+                    NSLog(e);
+                });
         NSLog(@"Hi");
     }
 

@@ -31,11 +31,15 @@ typedef void (^RWPromiseBlock )(ResolveHandler resolve, RejectHandler reject);
 
 + (RWPromise *)timeout:(NSTimeInterval)timeInSec;
 
++ (RWPromise *)resolve:(id)value;
+
++ (RWPromise *)reject:(id)value;
+
 - (RWPromise *(^)(RWRunBlock))then;
 
 - (RWPromise *(^)(RWErrorBlock))catch;
 
-
+//+ (RWPromise *(^)(RWRunBlock))resolve;
 
 
 
