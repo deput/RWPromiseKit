@@ -1,2 +1,2 @@
 # RWPromiseKit
-A simple Promise library for iOS 
+A simple Promise library for Objective-C 
