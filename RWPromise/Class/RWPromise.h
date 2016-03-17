@@ -21,13 +21,8 @@ typedef RWErrorBlock RejectHandler;
 
 typedef void (^RWPromiseBlock )(ResolveHandler resolve, RejectHandler reject);
 
-
 @interface RWPromise : NSObject
 + (RWPromise *)promise:(RWPromiseBlock)block;
-
-+ (RWPromise *)all:(NSArray<RWPromise *> *)promises;
-
-+ (RWPromise *)race:(NSArray<RWPromise *> *)promises;
 
 + (RWPromise *)timeout:(NSTimeInterval)timeInSec;
 
@@ -35,12 +30,24 @@ typedef void (^RWPromiseBlock )(ResolveHandler resolve, RejectHandler reject);
 
 + (RWPromise *)reject:(id)value;
 
+@end
+
+@interface RWPromise (all)
++ (RWPromise *)all:(NSArray<RWPromise *> *)promises;
+@end
+
+@interface RWPromise (race)
++ (RWPromise *)race:(NSArray<RWPromise *> *)promises;
+@end
+
+@interface RWPromise (then)
 - (RWPromise *(^)(RWRunBlock))then;
+@end
 
+@interface RWPromise (catch)
 - (RWPromise *(^)(RWErrorBlock))catch;
+@end
 
-//+ (RWPromise *(^)(RWRunBlock))resolve;
-
-
-
+@interface RWPromise (after)
+- (RWPromise *(^)(NSTimeInterval))after;
 @end

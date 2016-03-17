@@ -9,14 +9,21 @@
 /* Begin PBXBuildFile section */
 		6DFDC0A7F34ACBEB08E546E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC71486F2EC0FD9E70FD5 /* LaunchScreen.storyboard */; };
 		6DFDC224D0271758099F2496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC862FBF20EF24C6B256D /* AppDelegate.m */; };
+		6DFDC2640223DAB9E8A376B1 /* then.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCA30DE7D7705A61B0565 /* then.m */; };
 		6DFDC2D4F6640A51204297D9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC90D4673DAD06829961A /* Info.plist */; };
+		6DFDC38C49179F0832FF1264 /* tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC8856216DFB64250C3A3 /* tests.m */; };
+		6DFDC3DC3F0D5D48F38329F8 /* after.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC5EB7B08B162E75CF9B2 /* after.m */; };
 		6DFDC4234780FAA045C524F5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC9006B395BBD8F76B0FE /* Info.plist */; };
 		6DFDC47DACE5DBED1059824F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDCBB080BF5C9E047DC689 /* Assets.xcassets */; };
 		6DFDC8DEDB4F5EF9BE1DDC4D /* RWPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCDB4932875AF1D8C64A1 /* RWPromise.m */; };
+		6DFDC958598A8EFA580BFB1A /* all.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC71F8C627F719CCE119B /* all.m */; };
 		6DFDC9AB724AE7648640742E /* RWPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC33563E36967319AF1B3 /* RWPromiseTests.m */; };
+		6DFDCA605904307650ACA2C0 /* finally.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC171CDDBA1B3EBF80C4C /* finally.m */; };
 		6DFDCA6A7D86057531D3A466 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC2BB8DC17DCE1B8FC82D /* Main.storyboard */; };
 		6DFDCB225497EF3BE1213CAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC0D7EA675F2CF25C1C17 /* main.m */; };
 		6DFDCCC66983E77BE9AB5A36 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC7B08D0C350D116E4EB5 /* ViewController.m */; };
+		6DFDCFAE31DCC78745D4EE87 /* race.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC9AA5374B9649F521651 /* race.m */; };
+		6DFDCFE6DD7EB957EC572E48 /* catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC893378A41A20AC00F99 /* catch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,18 +38,26 @@
 
 /* Begin PBXFileReference section */
 		6DFDC0D7EA675F2CF25C1C17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6DFDC171CDDBA1B3EBF80C4C /* finally.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finally.m; sourceTree = "<group>"; };
 		6DFDC33563E36967319AF1B3 /* RWPromiseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWPromiseTests.m; sourceTree = "<group>"; };
+		6DFDC5EB7B08B162E75CF9B2 /* after.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = after.m; sourceTree = "<group>"; };
 		6DFDC63D4F9DFDA74771EC60 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6DFDC71F8C627F719CCE119B /* all.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = all.m; sourceTree = "<group>"; };
 		6DFDC7B08D0C350D116E4EB5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6DFDC862FBF20EF24C6B256D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6DFDC8856216DFB64250C3A3 /* tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tests.m; sourceTree = "<group>"; };
+		6DFDC893378A41A20AC00F99 /* catch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = catch.m; sourceTree = "<group>"; };
 		6DFDC8FD4CBC3C89553B4832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6DFDC9006B395BBD8F76B0FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		6DFDC90D4673DAD06829961A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		6DFDC9AA5374B9649F521651 /* race.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = race.m; sourceTree = "<group>"; };
+		6DFDCA30DE7D7705A61B0565 /* then.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = then.m; sourceTree = "<group>"; };
 		6DFDCA5288C414E58536A7A7 /* RWPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWPromise.h; sourceTree = "<group>"; };
 		6DFDCAFF146FFBFACFF3A206 /* RWPromiseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RWPromiseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DFDCBB080BF5C9E047DC689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6DFDCCA3D8BEE73F654A2BD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6DFDCDB4932875AF1D8C64A1 /* RWPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWPromise.m; sourceTree = "<group>"; };
+		6DFDCE948FE1412E888D731A /* RWPromise+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RWPromise+Internal.h"; sourceTree = "<group>"; };
 		6DFDCE95AA0A1B48AE140827 /* RWPromise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RWPromise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DFDCF72A63E6C2C61204CCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +97,20 @@
 			path = RWPromise;
 			sourceTree = "<group>";
 		};
+		6DFDC9D2E93B8D077E5B7ED8 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDC5EB7B08B162E75CF9B2 /* after.m */,
+				6DFDC9AA5374B9649F521651 /* race.m */,
+				6DFDC71F8C627F719CCE119B /* all.m */,
+				6DFDC893378A41A20AC00F99 /* catch.m */,
+				6DFDCE948FE1412E888D731A /* RWPromise+Internal.h */,
+				6DFDCA30DE7D7705A61B0565 /* then.m */,
+				6DFDC171CDDBA1B3EBF80C4C /* finally.m */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
 		6DFDCA351F42BC18B7BD8FEE = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +125,7 @@
 			children = (
 				6DFDCDB4932875AF1D8C64A1 /* RWPromise.m */,
 				6DFDCA5288C414E58536A7A7 /* RWPromise.h */,
+				6DFDC9D2E93B8D077E5B7ED8 /* Internal */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -122,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				6DFDC0D7EA675F2CF25C1C17 /* main.m */,
+				6DFDC8856216DFB64250C3A3 /* tests.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -221,6 +252,13 @@
 				6DFDC224D0271758099F2496 /* AppDelegate.m in Sources */,
 				6DFDCCC66983E77BE9AB5A36 /* ViewController.m in Sources */,
 				6DFDC8DEDB4F5EF9BE1DDC4D /* RWPromise.m in Sources */,
+				6DFDC3DC3F0D5D48F38329F8 /* after.m in Sources */,
+				6DFDCFAE31DCC78745D4EE87 /* race.m in Sources */,
+				6DFDC958598A8EFA580BFB1A /* all.m in Sources */,
+				6DFDCFE6DD7EB957EC572E48 /* catch.m in Sources */,
+				6DFDC2640223DAB9E8A376B1 /* then.m in Sources */,
+				6DFDCA605904307650ACA2C0 /* finally.m in Sources */,
+				6DFDC38C49179F0832FF1264 /* tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
