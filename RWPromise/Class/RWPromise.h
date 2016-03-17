@@ -24,7 +24,7 @@ typedef void (^RWPromiseBlock )(ResolveHandler resolve, RejectHandler reject);
 @interface RWPromise : NSObject
 + (RWPromise *)promise:(RWPromiseBlock)block;
 
-+ (RWPromise *)timeout:(NSTimeInterval)timeInSec;
++ (RWPromise *)timer:(NSTimeInterval)timeInSec;
 
 + (RWPromise *)resolve:(id)value;
 
@@ -50,4 +50,14 @@ typedef void (^RWPromiseBlock )(ResolveHandler resolve, RejectHandler reject);
 
 @interface RWPromise (after)
 - (RWPromise *(^)(NSTimeInterval))after;
+@end
+
+@interface RWPromise (finally)
+- (void (^)(RWRunBlock))finally;
+@end
+
+#pragma mark - not done yet
+
+@interface RWPromise (timeout)
+- (RWPromise *(^)(NSTimeInterval))timeout;
 @end

@@ -9,7 +9,7 @@
 @implementation RWPromise
 
 #pragma mark - Class Methods
-+ (RWPromise *)timeout:(NSTimeInterval)timeInSec {
++ (RWPromise *)timer:(NSTimeInterval)timeInSec {
     return [self promise:^(ResolveHandler resolve, RejectHandler reject) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (timeInSec * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             resolve(@"Timeout");

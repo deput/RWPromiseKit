@@ -47,13 +47,13 @@ __attribute__((constructor)) static void test() {
 //            //return nil;
 //        })
 
-        NSArray *ps = @[[RWPromise timeout:1], [RWPromise timeout:3], p1];
-        [RWPromise race:ps].then(^(id value) {
-                    NSLog(@"All!");
-                })
-                .catch(^(NSError *e) {
-                    NSLog(e);
-                });
-        NSLog(@"Hi");
+//        NSArray *ps = @[[RWPromise timeout:1], [RWPromise timeout:3], p1];
+//        [RWPromise race:ps].then(^(id value) {
+//                    NSLog(@"All!");
+//                })
+//                .catch(^(NSError *e) {
+//                    NSLog(e);
+//                });
+//        NSLog(@"Hi");
     }
 }
