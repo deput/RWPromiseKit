@@ -1,2 +1,10 @@
 # RWPromiseKit
-A simple Promise library for Objective-C 
+
+## Desiciption
+A light-weighted Promise library for Objective-C 
+
+##Usage
+
+
+
+
