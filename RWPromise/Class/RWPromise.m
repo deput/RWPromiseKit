@@ -5,6 +5,7 @@
 
 #import "RWPromise.h"
 #import "RWPromise+Internal.h"
+#import "RWThenable.h"
 
 @implementation RWPromise
 
@@ -24,7 +25,12 @@
 + (RWPromise *)resolve:(id)value {
     if ([value isKindOfClass:[RWPromise class]]) {
         return value;
-    } else {
+    }else if ([value conformsToProtocol:@protocol(RWThenable)]){
+        return [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            id<RWThenable> thenableObj = (id<RWThenable>)value;
+            thenableObj.then(resolve,reject);
+        }];
+    }else {
         return [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
             resolve(value);
         }];
@@ -66,19 +72,19 @@
                 } else {
                     //sSelf.depPromise = value;
                     [value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
-                    //[sSelf losingControl];
+                    //[sSelf loseControl];
                 }
             } else {
                 sSelf.value = value;
                 sSelf.state = RWPromiseStateResolved;
-                [sSelf losingControl];
+                [sSelf loseControl];
             }
         };
 
         self.rejectBlock = ^(NSError *error) {
             __strong RWPromise *sSelf = wSelf;
             STATE_PROTECT;
-            [sSelf losingControl];
+            [sSelf loseControl];
             sSelf.error = error;
             NSLog(@"%@-%@", sSelf, [error description]);
             sSelf.state = RWPromiseStateRejected;
@@ -95,7 +101,7 @@
     self.strongSelf = self;
 }
 
-- (void)losingControl {
+- (void)loseControl {
     self.strongSelf = nil;
 }
 

@@ -7,6 +7,12 @@
 
 #define STATE_PROTECT if (sSelf.state != RWPromiseStatePending) return;
 
+typedef NS_ENUM(NSUInteger, RWPromiseState) {
+    RWPromiseStatePending = 0,
+    RWPromiseStateResolved = 1,
+    RWPromiseStateRejected = 2
+};
+
 @interface RWPromise ()
 
 @property(nonatomic) id value;
@@ -33,7 +39,7 @@
 
 - (void)keepAlive;
 
-- (void)losingControl;
+- (void)loseControl;
 
 - (void)run;
 @end

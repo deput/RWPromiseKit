@@ -43,19 +43,19 @@
             } else {
                 //sSelf.depPromise = value;
                 [value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
-                //[sSelf losingControl];
+                //[sSelf loseControl];
             }
         } else {
             sSelf.value = value;
             sSelf.state = RWPromiseStateResolved;
-            [sSelf losingControl];
+            [sSelf loseControl];
         }
     };
 
     self.rejectBlock = ^(NSError *error) {
         __strong RWPromise *sSelf = wSelf;
         STATE_PROTECT;
-        [sSelf losingControl];
+        [sSelf loseControl];
         sSelf.error = error;
         NSLog(@"%@-%@", sSelf, [error description]);
         sSelf.state = RWPromiseStateRejected;

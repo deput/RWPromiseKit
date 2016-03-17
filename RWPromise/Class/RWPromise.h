@@ -5,11 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, RWPromiseState) {
-    RWPromiseStatePending = 0,
-    RWPromiseStateResolved = 1,
-    RWPromiseStateRejected = 2
-};
+
 
 typedef void (^RWRunBlock )(id value);
 
@@ -56,8 +52,8 @@ typedef void (^RWPromiseBlock )(ResolveHandler resolve, RejectHandler reject);
 - (void (^)(RWRunBlock))finally;
 @end
 
-#pragma mark - not done yet
-
 @interface RWPromise (timeout)
 - (RWPromise *(^)(NSTimeInterval))timeout;
 @end
+
+#pragma mark - not done yet

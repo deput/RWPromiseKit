@@ -39,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		6DFDC0D7EA675F2CF25C1C17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6DFDC24DCE4F6C9499E866F1 /* RWThenable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWThenable.h; sourceTree = "<group>"; };
 		6DFDC33563E36967319AF1B3 /* RWPromiseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWPromiseTests.m; sourceTree = "<group>"; };
 		6DFDC539CF53C196B761FBF6 /* race.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = race.m; sourceTree = "<group>"; };
 		6DFDC5A662A4F0376BDFB722 /* then.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = then.m; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 				6DFDCBB1F4205C3F489FC5FC /* RWPromise.h */,
 				6DFDCCFC9389B7A3E568E92B /* RWPromise.m */,
 				6DFDC0A3C8479BE9F6E6B2DF /* Internal */,
+				6DFDC24DCE4F6C9499E866F1 /* RWThenable.h */,
 			);
 			path = Class;
 			sourceTree = "<group>";
