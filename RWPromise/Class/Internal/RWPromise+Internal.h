@@ -35,6 +35,7 @@
 
 - (void)losingControl;
 
+- (void)run;
 @end
 
 
