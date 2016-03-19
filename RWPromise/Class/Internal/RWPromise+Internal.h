@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger, RWPromiseState) {
 @interface RWPromise ()
 
 @property(nonatomic) id value;
+
 @property(nonatomic) NSError *error;
 @property(atomic, assign) RWPromiseState state;
 
@@ -42,6 +43,22 @@ typedef NS_ENUM(NSUInteger, RWPromiseState) {
 - (void)loseControl;
 
 - (void)run;
+@end
+
+
+typedef NS_ENUM(NSUInteger, RWPromiseErrorCode) {
+    RWPromiseNoError = 0,
+    RWPromiseRuntimeError = 1,
+    RWPromiseRejectError= 2
+};
+
+@interface RWPromise (Error)
+
++ (NSError *) errorWithException:(NSException *)exception;
++ (NSError *) errorOfReject:(NSError *)actualError;
++ (NSError *) errorWithValue:(id)value;
++ (NSError *) errorWithReason:(NSString *)reason;
++ (NSError *) errorWithUserInfo:(NSDictionary *)userInfo;
 @end
 
 

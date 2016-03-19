@@ -25,7 +25,7 @@
                     self.thenBlock([(RWPromise *) object value]);
                 }
             } @catch (NSException *e) {
-                self.rejectBlock([NSError errorWithDomain:@"RWPromise" code:1 userInfo:@{@"exception" : e}]);
+                self.rejectBlock([RWPromise errorWithException:e]);
             }
         }
     }

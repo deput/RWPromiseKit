@@ -12,17 +12,21 @@
 @end
 
 @implementation RWRacePromise {
-    //NSMutableArray *_values;
+    NSMutableArray *_values;
+    //NSMutableDictionary *_orders;
 }
 
 - (instancetype)initWithRacePromises:(NSArray<RWPromise *> *)promises {
     self = [super init];
     self.promises = [NSMutableSet set];
+    _values = @[].mutableCopy;
+    //_orders = @{}.mutableCopy;
     self.state = RWPromiseStatePending;
     [self keepAlive];
 
     [promises enumerateObjectsUsingBlock:^(RWPromise *promise, NSUInteger idx, BOOL *stop) {
         [promise addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
+        //_orders[[NSValue valueWithNonretainedObject:promise]] = @(idx);
         if (promise.state == RWPromiseStatePending) {
             [self.promises addObject:promise];
         } else {
@@ -74,13 +78,10 @@
             }];
             self.resolveBlock([(RWPromise *) object value]);
         } else if (newState == RWPromiseStateRejected) {
-
-            //[object removeObserver:self forKeyPath:@"state"];
-            //[_values addObject:[(RWPromise *) object value]];
-        }
-
-        if (self.promises.count == 0) {
-            self.rejectBlock([NSError errorWithDomain:@"race" code:2 userInfo:@{}]);
+            [_values addObject:[(RWPromise *) object error]];
+            if (self.promises.count == 0) {
+                self.rejectBlock([RWPromise errorWithUserInfo:@{@"reason":@"No promise wins the race",@"errors":_values}]);
+            }
         }
     }
 }

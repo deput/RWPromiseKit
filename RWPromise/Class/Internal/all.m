@@ -26,8 +26,6 @@
         [promise addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
         if (promise.state == RWPromiseStatePending) {
             [self.promises addObject:promise];
-        } else {
-
         }
     }];
 
@@ -41,9 +39,7 @@
                 sSelf.depPromise = value;
                 [value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
             } else {
-                //sSelf.depPromise = value;
                 [value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
-                //[sSelf loseControl];
             }
         } else {
             sSelf.value = value;
