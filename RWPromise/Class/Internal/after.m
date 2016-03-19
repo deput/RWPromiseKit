@@ -41,10 +41,11 @@
         newPromise = [[RWAfterPromise alloc] init:^(ResolveHandler resolve, RejectHandler reject) {
             resolve(wSelf);
         }];
-        newPromise.thenBlock = ^(id value) {
+        newPromise.thenBlock = ^id(id value) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (timeInSec * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 newPromise.resolveBlock(newPromise.value);
             });
+            return @{@"Time is up!" : @(timeInSec)};
         };
         return newPromise;
     };

@@ -7,9 +7,11 @@
 
 
 
-typedef void (^RWRunBlock )(id value);
+//typedef void (^RWRunBlock )(id value);
 
-typedef RWRunBlock ResolveHandler;
+typedef id (^RWRunBlock )(id value);
+
+typedef void (^ResolveHandler )(id value);
 
 typedef void (^RWErrorBlock )(NSError *error);
 

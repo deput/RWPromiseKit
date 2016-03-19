@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, RWPromiseState) {
 
 @property(nonatomic, copy) RejectHandler catchBlock;
 
-@property(nonatomic, copy) ResolveHandler thenBlock;
+@property(nonatomic, copy) RWRunBlock thenBlock;
 
 @property(nonatomic, copy) NSString *identifier;
 

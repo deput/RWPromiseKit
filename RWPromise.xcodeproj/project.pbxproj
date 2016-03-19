@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		689EBD6F1C9D8E2200C2DF18 /* RWPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCCFC9389B7A3E568E92B /* RWPromise.m */; };
+		689EBD701C9D8E3000C2DF18 /* timeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCBAB2DF0E83A838F1383 /* timeout.m */; };
+		689EBD711C9D8E3300C2DF18 /* RWPromise+Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC09A8E71431558CD8397 /* RWPromise+Error.m */; };
+		689EBD721C9D8E3800C2DF18 /* finally.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCE9B0DE69A54E1222856 /* finally.m */; };
+		689EBD731C9D8E3B00C2DF18 /* then.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC5A662A4F0376BDFB722 /* then.m */; };
+		689EBD741C9D8E4200C2DF18 /* catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCB542F8EBAEA17819D20 /* catch.m */; };
+		689EBD751C9D8E4500C2DF18 /* all.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCEB87431088643966CE2 /* all.m */; };
+		689EBD761C9D8E4900C2DF18 /* race.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC539CF53C196B761FBF6 /* race.m */; };
+		689EBD771C9D8E4C00C2DF18 /* after.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC74D37E376F522586907 /* after.m */; };
 		6DFDC0A7F34ACBEB08E546E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC71486F2EC0FD9E70FD5 /* LaunchScreen.storyboard */; };
 		6DFDC2189BC8FB06B85610CA /* all.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCEB87431088643966CE2 /* all.m */; };
 		6DFDC224D0271758099F2496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC862FBF20EF24C6B256D /* AppDelegate.m */; };
@@ -276,7 +285,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				689EBD731C9D8E3B00C2DF18 /* then.m in Sources */,
+				689EBD751C9D8E4500C2DF18 /* all.m in Sources */,
+				689EBD771C9D8E4C00C2DF18 /* after.m in Sources */,
+				689EBD721C9D8E3800C2DF18 /* finally.m in Sources */,
+				689EBD761C9D8E4900C2DF18 /* race.m in Sources */,
+				689EBD6F1C9D8E2200C2DF18 /* RWPromise.m in Sources */,
+				689EBD711C9D8E3300C2DF18 /* RWPromise+Error.m in Sources */,
 				6DFDC9AB724AE7648640742E /* RWPromiseTests.m in Sources */,
+				689EBD741C9D8E4200C2DF18 /* catch.m in Sources */,
+				689EBD701C9D8E3000C2DF18 /* timeout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +464,7 @@
 				6DFDCC210C1BC56A119D1C8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6DFDC34C08D1F4FEAE9C427E /* Build configuration list for PBXProject "RWPromise" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +482,7 @@
 				6DFDC1844172E3CD12125B21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

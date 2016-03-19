@@ -15,7 +15,9 @@
             resolve(wSelf);
         }];
         newPromise.thenBlock = runBlock;
-        newPromise.catchBlock = runBlock;
+        newPromise.catchBlock = ^(NSError * error){
+            runBlock(error);
+        };
     };
 }
 @end

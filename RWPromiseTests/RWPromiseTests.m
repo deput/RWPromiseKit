@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "RWPromise.h"
 
 @interface RWPromiseTests : XCTestCase
 
@@ -35,5 +36,125 @@
         // Put the code you want to measure the time of here.
     }];
 }
+
+
+- (void) testPromizeLifeCycle
+{
+    __weak id object = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            
+        }];
+        object = p1;
+    }
+    
+    XCTAssertNotNil(object,@"Promise won't be dealloced until resolved");
+    
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(nil);
+        }];
+        object = p1;
+    }
+    
+    XCTAssertNil(object,@"Promise will be dealloced until resolved");
+}
+
+- (void) testThen
+{
+    NSString* expectedRes = @"res";
+    __block NSString* result = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(expectedRes);
+        }];
+        p1.then(^id(id value){
+            result = value;
+            return @"Done";
+        });
+    }
+    
+    XCTAssertEqual(result, expectedRes);
+    
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(@"1");
+        }];
+        p1
+        .then(^id(NSString* value){
+            return [value stringByAppendingString:@"2"];
+        })
+        .then(^id(NSString* value){
+            return [value stringByAppendingString:@"3"];
+        })
+        .then(^id(NSString* value){
+            result = value;
+            return nil;
+        });
+    }
+    
+    XCTAssertTrue([result isEqualToString:@"123"]);
+}
+
+- (void) testCatch{
+    __block NSError* err = nil;
+    
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            reject([NSError errorWithDomain:@"mydomain" code:1 userInfo:nil]);
+        }];
+        p1
+        .catch(^(NSError* error){
+            err = error;
+        });
+    }
+    
+    XCTAssertTrue([err.domain isEqualToString:@"mydomain"]);
+    
+    err = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            reject([NSError errorWithDomain:@"mydomain" code:1 userInfo:nil]);
+        }];
+        p1
+        .then(^id(NSString* value){
+            return [value stringByAppendingString:@"2"];
+        })
+        .then(^id(NSString* value){
+            return [value stringByAppendingString:@"3"];
+        })
+        .catch(^(NSError* error){
+            err = error;
+        });
+    }
+    
+    XCTAssertTrue([err.domain isEqualToString:@"mydomain"]);
+    
+    
+    err = nil;
+    
+    __block id res = @"might be nil or not";
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            reject([NSError errorWithDomain:@"mydomain" code:1 userInfo:nil]);
+        }];
+        p1
+        .then(^id(NSString* value){
+            return [value stringByAppendingString:@"2"];
+        })
+        .catch(^(NSError* error){
+            err = error;
+        })
+        .then(^id(id value){
+            res = value;
+            return nil;
+        });
+    }
+    
+    XCTAssertTrue([err.domain isEqualToString:@"mydomain"]);
+    XCTAssertNil(res);
+}
+
+
 
 @end

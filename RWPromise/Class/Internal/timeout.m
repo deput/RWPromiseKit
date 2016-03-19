@@ -10,7 +10,7 @@
 @implementation RWPromise (timeout)
 - (RWPromise *(^)(NSTimeInterval))timeout
 {
-    __weak RWPromise *wSelf = self;
+    //__weak RWPromise *wSelf = self;
     return ^RWPromise *(NSTimeInterval timeInSec) {
         __weak RWPromise *newPromise = [RWPromise all:@[self,[RWPromise timer:timeInSec]]];
         return newPromise;

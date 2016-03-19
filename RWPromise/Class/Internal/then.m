@@ -6,12 +6,13 @@
 #import "RWPromise+Internal.h"
 
 @implementation RWPromise (then)
-- (__autoreleasing RWPromise *(^)(RWRunBlock))then {
+- (RWPromise *(^)(RWRunBlock))then {
     __weak RWPromise *wSelf = self;
     return ^RWPromise *(RWRunBlock thenBlock) {
         __weak RWPromise *newPromise = nil;
         newPromise = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
-            resolve(wSelf);
+            __strong RWPromise* sSelf = wSelf;
+            resolve(sSelf);
         }];
         newPromise.thenBlock = thenBlock;
         return newPromise;

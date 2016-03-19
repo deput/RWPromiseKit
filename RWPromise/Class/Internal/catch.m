@@ -6,7 +6,7 @@
 #import "RWPromise+Internal.h"
 
 @implementation RWPromise (catch)
-- (__autoreleasing RWPromise *(^)(RWErrorBlock))catch {
+- (RWPromise *(^)(RWErrorBlock))catch {
     __weak RWPromise *wSelf = self;
     return ^RWPromise *(RWErrorBlock catchBlock) {
         __weak RWPromise *newPromise = nil;

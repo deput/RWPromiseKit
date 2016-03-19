@@ -10,6 +10,7 @@
 @implementation RWPromise
 
 #pragma mark - Class Methods
+
 + (RWPromise *)timer:(NSTimeInterval)timeInSec {
     return [self promise:^(ResolveHandler resolve, RejectHandler reject) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (timeInSec * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -25,12 +26,12 @@
 + (RWPromise *)resolve:(id)value {
     if ([value isKindOfClass:[RWPromise class]]) {
         return value;
-    }else if ([value conformsToProtocol:@protocol(RWThenable)]){
+    } else if ([value conformsToProtocol:@protocol(RWThenable)]) {
         return [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
-            id<RWThenable> thenableObj = (id<RWThenable>)value;
-            thenableObj.then(resolve,reject);
+            id <RWThenable> thenableObj = (id <RWThenable>) value;
+            thenableObj.then(resolve, reject);
         }];
-    }else {
+    } else {
         return [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
             resolve(value);
         }];
@@ -42,7 +43,7 @@
         return value;
     } else {
         return [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
-            reject([NSError errorWithDomain:@"RWPromise" code:1 userInfo:@{@"value" : value}]);
+            reject([RWPromise errorWithValue:value]);
         }];
     }
 }
@@ -55,6 +56,7 @@
     static int i = 0;
     i++;
     self.identifier = [@(i) stringValue];
+    NSLog(@"%@th promise",self.identifier);
 
     if (self) {
         self.state = RWPromiseStatePending;
@@ -68,10 +70,10 @@
 
                 if (((RWPromise *) value).state == RWPromiseStatePending) {
                     sSelf.depPromise = value;
-                    [value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
+                    [(RWPromise*)value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
                 } else {
                     //sSelf.depPromise = value;
-                    [value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
+                    [(RWPromise*)value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
                     //[sSelf loseControl];
                 }
             } else {
@@ -107,7 +109,7 @@
 
 - (void)dealloc {
 
-    NSLog(@"dealloc");
+    NSLog(@"%@th promise dealloc",self.identifier);
     self.state = self.state;
 
     if (self.state == RWPromiseStatePending && self.depPromise) {
@@ -154,12 +156,13 @@
             [object removeObserver:self forKeyPath:@"state"];
 
             @try {
+                id value = nil;
                 if (self.thenBlock) {
-                    self.thenBlock([(RWPromise *) object value]);
+                    value = self.thenBlock([(RWPromise *) object value]);
                 }
-                self.resolveBlock([(RWPromise *) object value]);
-            }@catch(NSException *e){
-                self.rejectBlock([NSError errorWithDomain:@"RWPromise" code:1 userInfo:@{@"exception":e}]);
+                self.resolveBlock(value);
+            } @catch (NSException *e) {
+                self.rejectBlock([RWPromise errorWithException:e]);
             }
         }
     }
@@ -169,9 +172,8 @@
     if (self.promiseBlock) {
         @try {
             self.promiseBlock(self.resolveBlock, self.rejectBlock);
-        }
-        @catch (NSException *e){
-            self.rejectBlock([NSError errorWithDomain:@"RWPromise" code:1 userInfo:@{@"exception":e}]);
+        } @catch (NSException *e) {
+            self.rejectBlock([RWPromise errorWithException:e]);
         }
     }
 }
