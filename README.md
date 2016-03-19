@@ -23,5 +23,8 @@ getJSON("/posts.json").then(function(posts) {
 ##Usage of RWPromise
 
 
+License
+-------
 
+Licensed under MIT. [Full license here &raquo;](LICENSE.txt)
 
