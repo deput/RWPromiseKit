@@ -155,6 +155,39 @@
     XCTAssertNil(res);
 }
 
-
+- (void) testCatch2
+{
+    __block NSError* err = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            NSException *e = [NSException
+                    exceptionWithName:@"name"
+                               reason:@"reason"
+                              userInfo:@{}];
+            @throw e;
+        }];
+        p1
+        .catch(^(NSError* error){
+            err = error;
+        });
+    }
+    XCTAssertTrue([[[err userInfo][@"excepiton"] name] isEqualToString:@"name"],@"Should catch the exception");
+    
+    
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(nil);
+        }];
+        p1.then(^id(id value){
+            NSString* s = @"s";
+            [s doesNotRecognizeSelector:@selector(addObject:)];
+            return nil;
+        })
+        .catch(^(NSError* error){
+            err = error;
+        });
+    }
+    XCTAssertTrue([[[err userInfo][@"excepiton"] name] isEqualToString:@"NSInvalidArgumentException"]);
+}
 
 @end
