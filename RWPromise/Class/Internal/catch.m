@@ -11,7 +11,8 @@
     return ^RWPromise *(RWErrorBlock catchBlock) {
         __weak RWPromise *newPromise = nil;
         newPromise = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
-            resolve(wSelf);
+            __strong RWPromise* sSelf = wSelf;
+            resolve(sSelf);
         }];
         newPromise.catchBlock = catchBlock;
         return newPromise;
