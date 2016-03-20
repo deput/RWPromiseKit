@@ -1,6 +1,8 @@
 # RWPromiseKit
 
-## Desiciption
+Desiciption
+-------
+
 A light-weighted Promise library for Objective-C 
 
 #### About Promise
@@ -19,8 +21,47 @@ getJSON("/posts.json").then(function(posts) {
 });
 ```
 
+Usage of RWPromiseKit
+-------
+Here is a basic example:
+```objc
+RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+                  resolve(@"result");
+                }];
+p1.then(^id(NSString* value){
+  NSLog(@"%@",value); //result
+  return @"resultOfThen";
+}).then(^id(NSString* value){
+  NSLog(@"%@",value); //resultOfThen
+  NSException *e = [NSException exceptionWithName:@"name"
+                                           reason:@"reason"
+                                         userInfo:@{}];
+  @throw e;
+  return nil;
+}).catch(^(NSError* error){
+  NSLog(@"%@",[error description]); //error contains exception
+});
+```
+Using RWPromise is exactly same as using promise in js. `resolve` and `reject` are provided in initial block as input parameters, these two methods are used to change the state of a promise. Block passed in `then` will be invoked when a promise is set to resolved while one in `catch` will be invoked when rejected.
 
-##Usage of RWPromise
+For more infomation about the API of promise in js, please reference [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+###Suppoted API
+- `then`
+- `catch`
+- `finally`
+- `all`
+- `race`
+- `after`
+
+Issues and Todo list
+-------
+- I simplify the usage of `then`. Just pass only one handler block to hanle when last promise is resolved. To reject, you can raise an expection or return a new promise (comming soon!).
+
+- some other API: `map`,`filter`,`reduce`
+- Integrate with 3rd party lib
+- Unit test are not finished
+- Doc with more detail 
 
 
 License
