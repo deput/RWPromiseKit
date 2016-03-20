@@ -52,12 +52,12 @@
 
 - (instancetype)init:(RWPromiseBlock)initBlock {
     self = [super init];
-
+#ifdef DEBUG
     static int i = 0;
     i++;
     self.identifier = [@(i) stringValue];
     NSLog(@"%@th promise",self.identifier);
-
+#endif
     if (self) {
         self.state = RWPromiseStatePending;
         [self keepAlive];
@@ -108,34 +108,34 @@
 }
 
 - (void)dealloc {
-
+#ifdef DEBUG
     NSLog(@"%@th promise dealloc",self.identifier);
     self.state = self.state;
-
-    if (self.state == RWPromiseStatePending && self.depPromise) {
-        if (self.depPromise.state == RWPromiseStateRejected) {
-            if (self.catchBlock) {
-                self.catchBlock(self.depPromise.error);
-                self.resolveBlock(nil);
-            } else {
-                self.rejectBlock(self.depPromise.error);
-            }
-
-
-        } else if (self.depPromise.state == RWPromiseStateResolved) {
-            //self.resolveBlock(self.depPromise.value);
-            if (self.thenBlock) {
-                if (self.thenBlock) {
-                    self.thenBlock(self.depPromise.value);
-                }
-                self.resolveBlock(self.depPromise.value);
-            }
-        }
-
-        //self.depPromise.state = self.depPromise.state;
-
-
-    }
+#endif
+//    if (self.state == RWPromiseStatePending && self.depPromise) {
+//        if (self.depPromise.state == RWPromiseStateRejected) {
+//            if (self.catchBlock) {
+//                self.catchBlock(self.depPromise.error);
+//                self.resolveBlock(nil);
+//            } else {
+//                self.rejectBlock(self.depPromise.error);
+//            }
+//
+//
+//        } else if (self.depPromise.state == RWPromiseStateResolved) {
+//            //self.resolveBlock(self.depPromise.value);
+//            if (self.thenBlock) {
+//                if (self.thenBlock) {
+//                    self.thenBlock(self.depPromise.value);
+//                }
+//                self.resolveBlock(self.depPromise.value);
+//            }
+//        }
+//
+//        //self.depPromise.state = self.depPromise.state;
+//
+//
+//    }
     self.depPromise = nil;
 }
 
