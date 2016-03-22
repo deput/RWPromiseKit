@@ -159,7 +159,10 @@
                 id value = nil;
                 if (self.thenBlock) {
                     value = self.thenBlock([(RWPromise *) object value]);
+                }else{
+                    value = [(RWPromise *) object value];
                 }
+                self.thenBlock = nil;
                 self.resolveBlock(value);
             } @catch (NSException *e) {
                 self.rejectBlock([RWPromise errorWithException:e]);

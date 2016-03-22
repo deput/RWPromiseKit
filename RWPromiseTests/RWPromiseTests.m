@@ -190,4 +190,44 @@
     XCTAssertTrue([[[err userInfo][@"excepiton"] name] isEqualToString:@"NSInvalidArgumentException"]);
 }
 
+
+- (void) testThenNestedPromise{
+    __block NSString* result = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(@"1");
+        }];
+        p1.then(^id(NSString* value){
+            result = value;
+            RWPromise* p2 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+                resolve(@"2");
+            }];
+            return p2;
+        })
+        .then(^id(NSString* value){
+            result = [result stringByAppendingString:value];
+            return nil;
+        });
+    }
+    
+    XCTAssertTrue([result isEqualToString:@"12"]);
+}
+
+- (void) testTimeout{
+    __weak id object = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise timer:1];
+        p1.then(^id(NSString* value){
+            return nil;
+        });
+        object = p1;
+    }
+    XCTAssertNotNil(object);
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    dispatch_semaphore_wait(sem, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)));
+    //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        XCTAssertNil(object);
+   // });
+    
+}
 @end
