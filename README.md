@@ -54,6 +54,17 @@ For more infomation about the API of promise in js, please reference [here](http
 - `race`
 - `after`
 
+
+Installation
+-------
+- Cocoapods
+```
+pod 'RWPromiseKit', '0.0.1'
+```
+
+- Source code
+Copy all source files from directory `Class` to your project
+
 Issues and Todo list
 -------
 - I simplify the usage of `then`. Just pass only one handler block to hanle when last promise is resolved. To reject, you can raise an expection or return a new promise.
