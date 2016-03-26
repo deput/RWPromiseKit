@@ -5,10 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-
-//typedef void (^RWRunBlock )(id value);
-
 typedef id (^RWRunBlock )(id value);
 
 typedef void (^ResolveHandler )(id value);
@@ -18,6 +14,8 @@ typedef void (^RWErrorBlock )(NSError *error);
 typedef RWErrorBlock RejectHandler;
 
 typedef void (^RWPromiseBlock )(ResolveHandler resolve, RejectHandler reject);
+
+NSError* promiseErrorWithReason(NSString* reason);
 
 @interface RWPromise : NSObject
 + (RWPromise *)promise:(RWPromiseBlock)block;

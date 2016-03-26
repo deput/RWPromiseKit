@@ -13,7 +13,7 @@
 
 + (RWPromise *)timer:(NSTimeInterval)timeInSec {
     return [self promise:^(ResolveHandler resolve, RejectHandler reject) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (timeInSec * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (timeInSec * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             resolve(@"Timeout");
         });
     }];
@@ -181,3 +181,8 @@
     }
 }
 @end
+
+NSError* promiseErrorWithReason(NSString* reason)
+{
+    return [RWPromise errorWithReason:reason];
+}
