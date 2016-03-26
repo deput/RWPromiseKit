@@ -12,7 +12,7 @@
 {
     //__weak RWPromise *wSelf = self;
     return ^RWPromise *(NSTimeInterval timeInSec) {
-        __weak RWPromise *newPromise = [RWPromise all:@[self,[RWPromise timer:timeInSec]]];
+        __weak RWPromise *newPromise = [RWPromise race:@[self,[RWPromise timer:timeInSec]]];
         return newPromise;
     };
 }
