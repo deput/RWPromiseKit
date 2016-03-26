@@ -363,7 +363,7 @@
 - (void) testTimeout2
 {
     __block id result = nil;
-    RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+    __unused RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
         
     }].timeout(3).then(^id(id value){
         result = value;
@@ -374,4 +374,21 @@
     
     XCTAssertEqual(result, @"Timeout");
 }
+
+- (void) testAfter
+{
+    __block id result = nil;
+    __unused RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+        resolve(@"1");
+    }].after(3).then(^id(id value){
+        result = value;
+        return nil;
+    });
+    XCTAssertNil(result);
+    [NSThread sleepForTimeInterval:5];
+    
+    //XCTAssertEqual(result, @"1");
+}
+
+
 @end
