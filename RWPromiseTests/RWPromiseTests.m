@@ -359,4 +359,19 @@
     [NSThread sleepForTimeInterval:3];
     XCTAssert([result isKindOfClass:[NSError class]]);
 }
+
+- (void) testTimeout2
+{
+    __block id result = nil;
+    RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+        
+    }].timeout(3).then(^id(id value){
+        result = value;
+        return nil;
+    });
+    XCTAssertNil(result);
+    [NSThread sleepForTimeInterval:4];
+    
+    XCTAssertEqual(result, @"Timeout");
+}
 @end
