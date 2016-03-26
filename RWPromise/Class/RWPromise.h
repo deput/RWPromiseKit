@@ -49,7 +49,7 @@ NSError* promiseErrorWithReason(NSString* reason);
 @end
 
 @interface RWPromise (finally)
-- (void (^)(RWRunBlock))finally;
+- (void (^)(dispatch_block_t))finally;
 @end
 
 @interface RWPromise (timeout)

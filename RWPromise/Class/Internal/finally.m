@@ -6,17 +6,20 @@
 #import "RWPromise+Internal.h"
 
 @implementation RWPromise (finally)
-- (void (^)(RWRunBlock))finally
+- (void (^)(dispatch_block_t))finally
 {
     __weak RWPromise *wSelf = self;
-    return ^(RWRunBlock runBlock) {
+    return ^(dispatch_block_t runBlock) {
         __weak RWPromise *newPromise = nil;
         newPromise = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
             resolve(wSelf);
         }];
-        newPromise.thenBlock = runBlock;
+        newPromise.thenBlock = ^id(id value){
+            runBlock();
+            return nil;
+        };
         newPromise.catchBlock = ^(NSError * error){
-            runBlock(error);
+            runBlock();
         };
     };
 }
