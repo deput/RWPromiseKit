@@ -223,11 +223,63 @@
         object = p1;
     }
     XCTAssertNotNil(object);
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    dispatch_semaphore_wait(sem, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)));
-    //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        XCTAssertNil(object);
-   // });
+    
+    [NSThread sleepForTimeInterval:1.5];
+//    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+//    dispatch_semaphore_wait(sem, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)));
+    XCTAssertNil(object);
+}
+
+- (void) testAll1
+{
+    __block NSArray* result = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(@"1");
+        }];
+        
+        RWPromise* p2 = [RWPromise timer:1];
+        RWPromise* p3 = [RWPromise timer:2];
+        
+        [RWPromise all:@[p1,p2,p3]].then(^id(NSArray* values){
+            result = values;
+            return nil;
+        });
+        
+    }
+    [NSThread sleepForTimeInterval:3];
+    XCTAssert([result[0] isEqualToString:@"1"]);
+    XCTAssert([result[1] isEqualToString:@"Timeout"]);
+    XCTAssert([result[2] isEqualToString:@"Timeout"]);
+
     
 }
+
+- (void) testAll2
+{
+    __block id result = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            reject(promiseErrorWithReason(@"on purpose"));
+        }];
+        
+        RWPromise* p2 = [RWPromise timer:1];
+        RWPromise* p3 = [RWPromise timer:2];
+        
+        [RWPromise all:@[p1,p2,p3]].then(^id(NSArray* values){
+            result = values;
+            return nil;
+        }).catch(^(NSError* error){
+            result = error;
+        });
+        
+    }
+    [NSThread sleepForTimeInterval:3];
+    
+    XCTAssert([result isKindOfClass:[NSError class]]);
+    XCTAssert([[result userInfo][@"reason"] isEqualToString:@"on purpose"]);
+    
+}
+
+
 @end
