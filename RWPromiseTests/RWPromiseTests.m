@@ -391,4 +391,37 @@
 }
 
 
+- (void) testFinally
+{
+    __block id result = nil;
+    @autoreleasepool {
+        [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(@"1");
+        }].then(^id(id value){
+            result = value;
+            return nil;
+        }).catch(^(NSError* error){
+        
+        }).finally(^{
+            result = @"finally";
+        });
+    }
+    
+    XCTAssertEqual(result, @"finally");
+    
+    @autoreleasepool {
+        [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            reject(nil);
+        }].then(^id(id value){
+            result = value;
+            return nil;
+        }).catch(^(NSError* error){
+            
+        }).finally(^{
+            result = @"finally";
+        });
+    }
+    
+    XCTAssertEqual(result, @"finally");
+}
 @end
