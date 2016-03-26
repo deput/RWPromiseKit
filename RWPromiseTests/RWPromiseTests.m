@@ -251,8 +251,6 @@
     XCTAssert([result[0] isEqualToString:@"1"]);
     XCTAssert([result[1] isEqualToString:@"Timeout"]);
     XCTAssert([result[2] isEqualToString:@"Timeout"]);
-
-    
 }
 
 - (void) testAll2
@@ -278,8 +276,87 @@
     
     XCTAssert([result isKindOfClass:[NSError class]]);
     XCTAssert([[result userInfo][@"reason"] isEqualToString:@"on purpose"]);
-    
 }
 
+- (void) testRace1
+{
+    __block NSArray* result = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(@"1");
+        }];
+        
+        RWPromise* p2 = [RWPromise timer:1];
+        RWPromise* p3 = [RWPromise timer:2];
+        
+        [RWPromise race:@[p1,p2,p3]].then(^id(id value){
+            result = value;
+            return nil;
+        });
+        
+    }
+    [NSThread sleepForTimeInterval:3];
+    XCTAssert([(NSString*)result isEqualToString:@"1"]);
+}
 
+- (void) testRace2
+{
+    __block NSArray* result = nil;
+    @autoreleasepool {
+        
+        RWPromise* p2 = [RWPromise timer:1].then(^id (id value){
+            return @"2";
+        });
+
+        RWPromise* p3 = [RWPromise timer:2].then(^id (id value){
+            return @"3";
+        });
+        
+        [RWPromise race:@[p2,p3]].then(^id(id value){
+            result = value;
+            return nil;
+        });
+        
+    }
+    [NSThread sleepForTimeInterval:3];
+    XCTAssert([(NSString*)result isEqualToString:@"2"]);
+}
+
+- (void) testRace3
+{
+    __block id result = nil;
+    @autoreleasepool {
+        RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            reject(promiseErrorWithReason(@"1"));
+        }];
+        
+        RWPromise* p2 = [RWPromise timer:1].then(^id (id value){
+            NSException *e = [NSException
+                              exceptionWithName:@"name"
+                              reason:@"reason"
+                              userInfo:@{}];
+            @throw e;
+            return @"2";
+        });
+        
+        RWPromise* p3 = [RWPromise timer:2].then(^id (id value){
+            NSException *e = [NSException
+                              exceptionWithName:@"name"
+                              reason:@"reason"
+                              userInfo:@{}];
+            @throw e;
+            return @"3";
+        });
+        
+        [RWPromise race:@[p1,p2,p3]].then(^id(id value){
+            result = value;
+            return nil;
+        }).catch(^(NSError* error){
+            result = error;
+        });
+        
+    }
+    [NSThread sleepForTimeInterval:3];
+    XCTAssert([result isKindOfClass:[NSError class]]);
+}
 @end
