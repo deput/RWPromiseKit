@@ -20,11 +20,9 @@
 		6DFDC2189BC8FB06B85610CA /* all.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCEB87431088643966CE2 /* all.m */; };
 		6DFDC224D0271758099F2496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC862FBF20EF24C6B256D /* AppDelegate.m */; };
 		6DFDC2851C543221DA3650C2 /* RWPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCCFC9389B7A3E568E92B /* RWPromise.m */; };
-		6DFDC2D4F6640A51204297D9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC90D4673DAD06829961A /* Info.plist */; };
 		6DFDC2E4EF8B8C6ABB5983F2 /* timeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCBAB2DF0E83A838F1383 /* timeout.m */; };
 		6DFDC38C49179F0832FF1264 /* tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC8856216DFB64250C3A3 /* tests.m */; };
 		6DFDC39F23823910EC9D9930 /* catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCB542F8EBAEA17819D20 /* catch.m */; };
-		6DFDC4234780FAA045C524F5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC9006B395BBD8F76B0FE /* Info.plist */; };
 		6DFDC4761A29C16CD47196C6 /* RWPromise+Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC09A8E71431558CD8397 /* RWPromise+Error.m */; };
 		6DFDC47DACE5DBED1059824F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDCBB080BF5C9E047DC689 /* Assets.xcassets */; };
 		6DFDC685E878F3F12F026641 /* finally.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCE9B0DE69A54E1222856 /* finally.m */; };
@@ -218,6 +216,7 @@
 		6DFDC58F70518388EBEAA73A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = RW;
 			};
 			buildConfigurationList = 6DFDC34C08D1F4FEAE9C427E /* Build configuration list for PBXProject "RWPromise" */;
@@ -243,7 +242,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DFDC4234780FAA045C524F5 /* Info.plist in Resources */,
 				6DFDC47DACE5DBED1059824F /* Assets.xcassets in Resources */,
 				6DFDC0A7F34ACBEB08E546E0 /* LaunchScreen.storyboard in Resources */,
 				6DFDCA6A7D86057531D3A466 /* Main.storyboard in Resources */,
@@ -254,7 +252,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DFDC2D4F6640A51204297D9 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
