@@ -380,13 +380,15 @@
     __block id result = nil;
     __unused RWPromise* p1 = [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
         resolve(@"1");
-    }].after(3).then(^id(id value){
+    }]
+    .after(3)
+    .then(^id(id value){
         result = value;
         return nil;
     });
     XCTAssertNil(result);
-    [NSThread sleepForTimeInterval:5];
     
+    //[NSThread sleepForTimeInterval:5];
     //XCTAssertEqual(result, @"1");
 }
 
