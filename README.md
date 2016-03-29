@@ -80,5 +80,5 @@ Issues and Todo list
 License
 -------
 
-Licensed under MIT. [Full license here &raquo;](LICENSE.txt)
+Licensed under MIT. [Full license here &raquo;](LICENSE)
 
