@@ -53,7 +53,7 @@ For more infomation about the API of promise in js, please reference [here](http
 - `all`
 - `race`
 - `after`
-
+- `retry`
 
 Installation
 -------
@@ -70,7 +70,7 @@ Issues and Todo list
 -------
 - I simplify the usage of `then`. Just pass only one handler block to hanle when last promise is resolved. To reject, you can raise an expection or return a new promise.
 
-- some other API: `map`,`filter`,`reduce`
+- ~~some other API: `map`,`filter`,`reduce`~~
 - Integrate with 3rd party lib
 - ~~Unit test are not finished~~
 - Complicated test cases. 
@@ -80,5 +80,5 @@ Issues and Todo list
 License
 -------
 
-Licensed under MIT. [Full license here &raquo;](LICENSE.txt)
+Licensed under MIT. [Full license here &raquo;](LICENSE)
 
