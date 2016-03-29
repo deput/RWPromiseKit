@@ -426,4 +426,95 @@
     
     XCTAssertEqual(result, @"finally");
 }
+
+- (void) testRetry1
+{
+    NSUInteger retryCount = 3;
+    __block NSMutableArray* res = @[].mutableCopy;
+    __block NSString* final = nil;
+    @autoreleasepool {
+        [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            static NSUInteger triedCount = 0;
+            triedCount++;
+            [res addObject:@(triedCount)];
+            if (triedCount == retryCount) {
+                resolve(@"ahha");
+            }else{
+                reject(promiseErrorWithReason(@"needRetry"));
+            }
+            
+        }]
+        .retry(retryCount)
+        .then(^id(id value){
+            final = value;
+            return nil;
+        });
+    }
+    XCTAssert(res.count == retryCount);
+    XCTAssertTrue([final isEqualToString:@"ahha"]);
+}
+
+- (void) testRetry2
+{
+    NSUInteger retryCount = 3;
+    __block NSMutableArray* res = @[].mutableCopy;
+    __block id final = nil;
+    @autoreleasepool {
+        [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            static NSUInteger triedCount = 0;
+            triedCount++;
+            [res addObject:@(triedCount)];
+            reject(promiseErrorWithReason(@"needRetry"));
+        }]
+        .retry(retryCount)
+        .then(^id(id value){
+            final = value;
+            return nil;
+        })
+        .catch(^(NSError* e){
+            final = e;
+        });
+    }
+    XCTAssert(res.count == retryCount + 1);
+    XCTAssert([final isKindOfClass:[NSError class]]);
+}
+
+- (void) testRetry3
+{
+    NSUInteger retryCount = 3;
+    __block NSMutableArray* res = @[].mutableCopy;
+    __block id final = nil;
+    @autoreleasepool {
+        [RWPromise promise:^(ResolveHandler resolve, RejectHandler reject) {
+            resolve(@"1");
+        }]
+        .then(^id(id value){
+            static NSUInteger triedCount = 0;
+            triedCount++;
+            [res addObject:[value copy]];
+            if (triedCount == retryCount) {
+                return @"hola";
+            }else{
+                NSException *e = [NSException
+                                  exceptionWithName:@"name"
+                                  reason:@"reason"
+                                  userInfo:@{}];
+                @throw e;
+                return nil;
+            }
+            return nil;
+        })
+        .retry(retryCount)
+        .then(^id(id value){
+            final = value;
+            return nil;
+        })
+        .catch(^(NSError* e){
+            final = e;
+        });
+    }
+    XCTAssert(res.count == retryCount);
+    XCTAssertTrue([final isEqualToString:@"ahha"]);
+}
+
 @end

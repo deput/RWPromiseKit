@@ -56,4 +56,6 @@ NSError* promiseErrorWithReason(NSString* reason);
 - (RWPromise *(^)(NSTimeInterval))timeout;
 @end
 
-#pragma mark - not done yet
+@interface RWPromise (retry)
+- (RWPromise *(^)(NSUInteger))retry;
+@end

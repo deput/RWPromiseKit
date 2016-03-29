@@ -126,6 +126,7 @@
             [object removeObserver:self forKeyPath:@"state"];
             @try {
                 id value = nil;
+                self.valueKeptForRetry = [(RWPromise *) object value];
                 if (self.thenBlock) {
                     value = self.thenBlock([(RWPromise *) object value]);
                 } else {

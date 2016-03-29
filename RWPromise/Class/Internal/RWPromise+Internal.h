@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, RWPromiseState) {
 @property(nonatomic) id value;
 
 @property(nonatomic) NSError *error;
+
 @property(atomic, assign) RWPromiseState state;
 
 @property(nonatomic, strong) id strongSelf;
@@ -35,6 +36,8 @@ typedef NS_ENUM(NSUInteger, RWPromiseState) {
 @property(nonatomic, copy) RWRunBlock thenBlock;
 
 @property(nonatomic, copy) NSString *identifier;
+
+@property(nonatomic, strong) id valueKeptForRetry;
 
 - (instancetype)init:(RWPromiseBlock)initBlock;
 

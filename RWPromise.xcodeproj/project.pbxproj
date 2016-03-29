@@ -25,7 +25,9 @@
 		6DFDC39F23823910EC9D9930 /* catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCB542F8EBAEA17819D20 /* catch.m */; };
 		6DFDC4761A29C16CD47196C6 /* RWPromise+Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC09A8E71431558CD8397 /* RWPromise+Error.m */; };
 		6DFDC47DACE5DBED1059824F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDCBB080BF5C9E047DC689 /* Assets.xcassets */; };
+		6DFDC56D6132A30ACEE328BF /* retry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC721D1A186654BA10A83 /* retry.m */; };
 		6DFDC685E878F3F12F026641 /* finally.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDCE9B0DE69A54E1222856 /* finally.m */; };
+		6DFDC7F0E64235FC6BE84B9E /* retry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC721D1A186654BA10A83 /* retry.m */; };
 		6DFDC9AB724AE7648640742E /* RWPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC33563E36967319AF1B3 /* RWPromiseTests.m */; };
 		6DFDCA6A7D86057531D3A466 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDC2BB8DC17DCE1B8FC82D /* Main.storyboard */; };
 		6DFDCB225497EF3BE1213CAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDC0D7EA675F2CF25C1C17 /* main.m */; };
@@ -53,6 +55,7 @@
 		6DFDC539CF53C196B761FBF6 /* race.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = race.m; sourceTree = "<group>"; };
 		6DFDC5A662A4F0376BDFB722 /* then.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = then.m; sourceTree = "<group>"; };
 		6DFDC63D4F9DFDA74771EC60 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6DFDC721D1A186654BA10A83 /* retry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = retry.m; sourceTree = "<group>"; };
 		6DFDC74D37E376F522586907 /* after.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = after.m; sourceTree = "<group>"; };
 		6DFDC7B08D0C350D116E4EB5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6DFDC862FBF20EF24C6B256D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 				6DFDCE9B0DE69A54E1222856 /* finally.m */,
 				6DFDCBAB2DF0E83A838F1383 /* timeout.m */,
 				6DFDC09A8E71431558CD8397 /* RWPromise+Error.m */,
+				6DFDC721D1A186654BA10A83 /* retry.m */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -275,6 +279,7 @@
 				6DFDC685E878F3F12F026641 /* finally.m in Sources */,
 				6DFDC2E4EF8B8C6ABB5983F2 /* timeout.m in Sources */,
 				6DFDC4761A29C16CD47196C6 /* RWPromise+Error.m in Sources */,
+				6DFDC56D6132A30ACEE328BF /* retry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +297,7 @@
 				6DFDC9AB724AE7648640742E /* RWPromiseTests.m in Sources */,
 				689EBD741C9D8E4200C2DF18 /* catch.m in Sources */,
 				689EBD701C9D8E3000C2DF18 /* timeout.m in Sources */,
+				6DFDC7F0E64235FC6BE84B9E /* retry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
