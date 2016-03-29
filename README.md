@@ -53,7 +53,7 @@ For more infomation about the API of promise in js, please reference [here](http
 - `all`
 - `race`
 - `after`
-
+- `retry`
 
 Installation
 -------
