@@ -59,3 +59,24 @@ NSError* promiseErrorWithReason(NSString* reason);
 @interface RWPromise (retry)
 - (RWPromise *(^)(NSUInteger))retry;
 @end
+
+
+typedef RWPromise* (^RWMapFuncBlock )(id value);
+
+@interface RWPromise (map)
++ (RWPromise *) map:(NSArray *) array :(RWMapFuncBlock) mapFunc;
+@end
+
+typedef BOOL (^RWFilterFuncBlock )(id value);
+
+@interface RWPromise (filter)
++ (RWPromise *) filter:(NSArray *) array :(RWFilterFuncBlock) filterFunc;
+@end
+
+typedef RWPromise* (^RWReduceFuncBlock )(id item, id acc);
+
+@interface RWPromise (reduce)
++ (RWPromise *) reduce:(NSArray *) array :(RWReduceFuncBlock) reduceFunc initialValue:(id)initialValue;
+@end
+
+
