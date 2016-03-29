@@ -14,7 +14,7 @@
 + (RWPromise *)timer:(NSTimeInterval)timeInSec {
     return [self promise:^(ResolveHandler resolve, RejectHandler reject) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (timeInSec * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            resolve(@"Timeout");
+            resolve(@{@"Timeout" : @(timeInSec)});
         });
     }];
 }
@@ -56,7 +56,7 @@
     static int i = 0;
     i++;
     self.identifier = [@(i) stringValue];
-    NSLog(@"%@th promise",self.identifier);
+    NSLog(@"%@th promise", self.identifier);
 #endif
     if (self) {
         self.state = RWPromiseStatePending;
@@ -67,15 +67,10 @@
             __strong RWPromise *sSelf = wSelf;
             STATE_PROTECT;
             if ([value isKindOfClass:[RWPromise class]]) {
-
                 if (((RWPromise *) value).state == RWPromiseStatePending) {
                     sSelf.depPromise = value;
-                    [(RWPromise*)value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
-                } else {
-                    //sSelf.depPromise = value;
-                    [(RWPromise*)value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
-                    //[sSelf loseControl];
                 }
+                [(RWPromise *) value addObserver:sSelf forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
             } else {
                 sSelf.value = value;
                 sSelf.state = RWPromiseStateResolved;
@@ -88,10 +83,11 @@
             STATE_PROTECT;
             [sSelf loseControl];
             sSelf.error = error;
+#ifdef DEBUG
             NSLog(@"%@-%@", sSelf, [error description]);
+#endif
             sSelf.state = RWPromiseStateRejected;
         };
-
         self.promiseBlock = initBlock;
     }
 
@@ -109,33 +105,9 @@
 
 - (void)dealloc {
 #ifdef DEBUG
-    NSLog(@"%@th promise dealloc",self.identifier);
-    self.state = self.state;
+    NSLog(@"%@th promise dealloc", self.identifier);
 #endif
-//    if (self.state == RWPromiseStatePending && self.depPromise) {
-//        if (self.depPromise.state == RWPromiseStateRejected) {
-//            if (self.catchBlock) {
-//                self.catchBlock(self.depPromise.error);
-//                self.resolveBlock(nil);
-//            } else {
-//                self.rejectBlock(self.depPromise.error);
-//            }
-//
-//
-//        } else if (self.depPromise.state == RWPromiseStateResolved) {
-//            //self.resolveBlock(self.depPromise.value);
-//            if (self.thenBlock) {
-//                if (self.thenBlock) {
-//                    self.thenBlock(self.depPromise.value);
-//                }
-//                self.resolveBlock(self.depPromise.value);
-//            }
-//        }
-//
-//        //self.depPromise.state = self.depPromise.state;
-//
-//
-//    }
+    self.state = self.state;
     self.depPromise = nil;
 }
 
@@ -147,19 +119,16 @@
             if (self.catchBlock) {
                 self.catchBlock([(RWPromise *) object error]);
                 self.resolveBlock(nil);
-
             } else {
                 self.rejectBlock([(RWPromise *) object error]);
             }
-
         } else if (newState == RWPromiseStateResolved) {
             [object removeObserver:self forKeyPath:@"state"];
-
             @try {
                 id value = nil;
                 if (self.thenBlock) {
                     value = self.thenBlock([(RWPromise *) object value]);
-                }else{
+                } else {
                     value = [(RWPromise *) object value];
                 }
                 self.thenBlock = nil;
@@ -182,7 +151,6 @@
 }
 @end
 
-NSError* promiseErrorWithReason(NSString* reason)
-{
+NSError *promiseErrorWithReason(NSString *reason) {
     return [RWPromise errorWithReason:reason];
 }
