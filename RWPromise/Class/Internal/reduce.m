@@ -8,13 +8,20 @@
 @implementation RWPromise (reduce)
 + (RWPromise *) reduce:(NSArray *) array :(RWReduceFuncBlock) reduceFunc initialValue:(id)initialValue
 {
-    NSMutableArray<RWPromise*>* promises = @[].mutableCopy;
+    if (array.count == 0) {
+        return nil;
+    }
+    __block RWPromise * p = reduceFunc(array[0],initialValue);
     [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [promises addObject:reduceFunc(obj,initialValue)];
+        if (idx > 0) {
+            p = p.then(^id(id value){
+                return reduceFunc(obj,value);
+            });
+        }
     }];
 
-    return [RWPromise all:promises].then(^id(NSArray* res){
-        return res.lastObject;
+    return p.then(^id(id res){
+        return res;
     });
 }
 @end

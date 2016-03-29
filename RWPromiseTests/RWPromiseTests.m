@@ -249,8 +249,8 @@
     }
     [NSThread sleepForTimeInterval:3];
     XCTAssert([result[0] isEqualToString:@"1"]);
-    XCTAssert([result[1] isEqualToString:@"Timeout"]);
-    XCTAssert([result[2] isEqualToString:@"Timeout"]);
+    XCTAssert([[result[1] allKeys][0] isEqualToString:@"Timeout"]);
+    XCTAssert([[result[2] allKeys][0]  isEqualToString:@"Timeout"]);
 }
 
 - (void) testAll2
@@ -372,7 +372,7 @@
     XCTAssertNil(result);
     [NSThread sleepForTimeInterval:4];
     
-    XCTAssertEqual(result, @"Timeout");
+    XCTAssertEqual([result allKeys][0] , @"Timeout");
 }
 
 - (void) testAfter
@@ -515,6 +515,96 @@
     }
     XCTAssert(res.count == retryCount);
     XCTAssertTrue([final isEqualToString:@"hola"]);
+}
+
+- (void) testMap1
+{
+    __block NSArray* final = nil;
+    @autoreleasepool {
+        [RWPromise map:@[@"1",@"2",@"3"] :^RWPromise *(id value) {
+            return [RWPromise resolve:value];
+        }].then(^id(NSArray* values){
+            final = values;
+            return nil;
+        });
+    }
+    
+    XCTAssertTrue([final isKindOfClass:[NSArray class]]);
+    XCTAssertEqual(3, final.count);
+    XCTAssertTrue([final containsObject:@"1"]);
+    XCTAssertTrue([final containsObject:@"2"]);
+    XCTAssertTrue([final containsObject:@"3"]);
+}
+
+- (void) testMap2
+{
+    __block id final = nil;
+    @autoreleasepool {
+        [RWPromise map:@[@"1",@"2",@"3"] :^RWPromise *(id value) {
+            return [RWPromise reject:value];
+        }].then(^id(NSArray* values){
+            final = values;
+            return nil;
+        })
+        .catch(^(NSError* e){
+            final = e;
+        });
+    }
+    
+    XCTAssert([final isKindOfClass:[NSError class]]);
+}
+
+- (void) testFilter
+{
+    __block NSArray* final = nil;
+    @autoreleasepool {
+        [RWPromise filter:@[@1,@2,@3,@4,@5] :^BOOL(NSNumber* number) {
+            return number.integerValue % 2 == 0;
+        }]
+        .then(^id(NSArray* values){
+            final = values;
+            return nil;
+        });
+    }
+    XCTAssertEqual(2, final.count);
+    XCTAssertTrue([final containsObject:@2]);
+    XCTAssertTrue([final containsObject:@4]);
+}
+
+- (void) testReduce1
+{
+    __block NSNumber* final = nil;
+    @autoreleasepool {
+        [RWPromise reduce:@[@1,@2,@3,@4,@5] :^RWPromise *(id item, NSNumber* acc) {
+            return [RWPromise resolve:item].then(^id(NSNumber* number){
+                return @(acc.integerValue + number.integerValue);
+            });
+        } initialValue:@(0)]
+        .then(^id(NSNumber* value){
+            final = value;
+            return nil;
+        });
+    }
+    XCTAssertTrue([final isEqualToNumber:@15]);
+    
+}
+
+- (void) testReduce2
+{
+    __block NSNumber* final = nil;
+    @autoreleasepool {
+        [RWPromise reduce:@[@1,@2,@3,@4,@5] :^RWPromise *(id item, NSNumber* acc) {
+            return [RWPromise resolve:item].then(^id(NSNumber* number){
+                return @(acc.integerValue * number.integerValue);
+            });
+        } initialValue:@(1)]
+        .then(^id(NSNumber* value){
+            final = value;
+            return nil;
+        });
+    }
+    XCTAssertTrue([final isEqualToNumber:@120]);
+    
 }
 
 @end
