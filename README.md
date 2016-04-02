@@ -59,7 +59,7 @@ Installation
 -------
 - Cocoapods
 ```
-pod 'RWPromiseKit', '0.0.1'
+pod 'RWPromiseKit', '0.1.0'
 ```
 
 - Source code
