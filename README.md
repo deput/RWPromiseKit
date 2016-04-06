@@ -50,10 +50,16 @@ For more infomation about the API of promise in js, please reference [here](http
 - `then`
 - `catch`
 - `finally`
-- `all`
-- `race`
 - `after`
 - `retry`
+- `timeout`
+- `map`
+- `filter`
+- `reduce`
+- `race`
+- `all`
+- `resolve`
+- `reject`
 
 Installation
 -------
