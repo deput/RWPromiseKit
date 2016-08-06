@@ -58,6 +58,18 @@
     }
     
     XCTAssertNil(object,@"Promise will be dealloced until resolved");
+    
+    object = @"Not nil";
+    @autoreleasepool {
+        RWPromise* p1 = [RWProgressPromise promise:^(ResolveHandler resolve, RejectHandler reject, ProgressHandler progress) {
+            resolve(nil);
+        }].progress(^(double proportion, id value){
+        
+        });
+        object = p1;
+    }
+    
+    XCTAssertNil(object,@"Promise will be dealloced until resolved");
 }
 
 - (void) testThen
@@ -605,6 +617,29 @@
     }
     XCTAssertTrue([final isEqualToNumber:@120]);
     
+}
+
+
+- (void) testProgress
+{
+    __block NSMutableArray* res = @[].mutableCopy;
+    @autoreleasepool {
+        RWProgressPromise* p =
+        [RWProgressPromise promise:^(ResolveHandler resolve, RejectHandler reject, ProgressHandler progress) {
+        }];
+        p.progress(^(double propotion, id value){
+            [res addObject:value];
+        }).then(^id(id value){
+            [res addObject:value];
+            return nil;
+        });
+        [p progress:0.f :@1];
+        [p progress:1.f :@2];
+        [p resolve:@3];
+    }
+    XCTAssertTrue([res[0] isEqualToNumber:@1]);
+    XCTAssertTrue([res[1] isEqualToNumber:@2]);
+    XCTAssertTrue([res[2] isEqualToNumber:@3]);
 }
 
 @end
