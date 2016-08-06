@@ -12,6 +12,7 @@ A light-weighted Promise library for Objective-C
 
 In JavaScript, `Promise` handles asynchronising call beatifully:
 
+
 ```js
 getJSON("/posts.json").then(function(posts) {
   // ...
