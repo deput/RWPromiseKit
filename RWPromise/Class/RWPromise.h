@@ -15,7 +15,11 @@ typedef RWErrorBlock RejectHandler;
 
 typedef void (^RWPromiseBlock )(ResolveHandler resolve, RejectHandler reject);
 
+typedef void (^ProgressHandler )(double proportion, id value);
+
 NSError* promiseErrorWithReason(NSString* reason);
+
+typedef void (^RWProgressPromiseBlock )(ResolveHandler resolve, RejectHandler reject, ProgressHandler progress);
 
 @interface RWPromise : NSObject
 + (RWPromise *)promise:(RWPromiseBlock)block;
@@ -25,6 +29,10 @@ NSError* promiseErrorWithReason(NSString* reason);
 + (RWPromise *)resolve:(id)value;
 
 + (RWPromise *)reject:(id)value;
+
+- (void) resolve:(id)value;
+
+- (void) reject:(NSError *)error;
 
 @end
 
@@ -60,7 +68,6 @@ NSError* promiseErrorWithReason(NSString* reason);
 - (RWPromise *(^)(NSUInteger))retry;
 @end
 
-
 typedef RWPromise* (^RWMapFuncBlock )(id value);
 
 @interface RWPromise (map)
@@ -77,6 +84,17 @@ typedef RWPromise* (^RWReduceFuncBlock )(id item, id acc);
 
 @interface RWPromise (reduce)
 + (RWPromise *) reduce:(NSArray *) array :(RWReduceFuncBlock) reduceFunc initialValue:(id)initialValue;
+@end
+
+@interface RWProgressPromise : RWPromise
+
++ (RWProgressPromise *)promise:(RWProgressPromiseBlock)block;
+
+@property(nonatomic, readonly) ProgressHandler progressHandler;
+
+- (RWPromise *(^)(ProgressHandler)) progress;
+
+- (void) progress:(double) proportion :(id)value;
 @end
 
 

@@ -52,16 +52,28 @@
 
 - (instancetype)init:(RWPromiseBlock)initBlock {
     self = [super init];
-#ifdef DEBUG
-    static int i = 0;
-    i++;
-    self.identifier = [@(i) stringValue];
-    NSLog(@"%@th promise", self.identifier);
-#endif
+
     if (self) {
+        [self privateInitialize];
+        self.promiseBlock = initBlock;
+    }
+
+    [self run];
+    return self;
+}
+
+- (void) privateInitialize
+{
+    if (self) {
+#ifdef DEBUG
+        static int i = 0;
+        i++;
+        self.identifier = [@(i) stringValue];
+        NSLog(@"%@th promise", self.identifier);
+#endif
         self.state = RWPromiseStatePending;
         [self keepAlive];
-
+        
         __weak RWPromise *wSelf = self;
         self.resolveBlock = ^(id value) {
             __strong RWPromise *sSelf = wSelf;
@@ -77,7 +89,7 @@
                 [sSelf loseControl];
             }
         };
-
+        
         self.rejectBlock = ^(NSError *error) {
             __strong RWPromise *sSelf = wSelf;
             STATE_PROTECT;
@@ -88,11 +100,7 @@
 #endif
             sSelf.state = RWPromiseStateRejected;
         };
-        self.promiseBlock = initBlock;
     }
-
-    [self run];
-    return self;
 }
 
 - (void)keepAlive {
@@ -149,6 +157,16 @@
             self.rejectBlock([RWPromise errorWithException:e]);
         }
     }
+}
+
+- (void) resolve:(id)value
+{
+    self.resolveBlock(value);
+}
+
+- (void) reject:(NSError *)error
+{
+    self.rejectBlock(error);
 }
 @end
 

@@ -46,6 +46,8 @@ typedef NS_ENUM(NSUInteger, RWPromiseState) {
 - (void)loseControl;
 
 - (void)run;
+
+- (void) privateInitialize;
 @end
 
 
@@ -62,6 +64,13 @@ typedef NS_ENUM(NSUInteger, RWPromiseErrorCode) {
 + (NSError *) errorWithValue:(id)value;
 + (NSError *) errorWithReason:(NSString *)reason;
 + (NSError *) errorWithUserInfo:(NSDictionary *)userInfo;
+@end
+
+@interface RWProgressPromise ()
+
+@property(nonatomic, copy) ProgressHandler progressBlock;
+
+- (void) setProgressHandler:(ProgressHandler)progressHandler;
 @end
 
 
