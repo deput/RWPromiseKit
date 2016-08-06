@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "RWPromiseKit"
-  s.version          = "0.0.1"
+  s.version          = "0.2.0"
   s.license          = { :type => 'MIT' }
   s.summary          = "A light-weighted Promise library for Objective-C"
   s.description      = "A light-weighted Promise library for Objective-C"
