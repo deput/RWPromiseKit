@@ -120,25 +120,26 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    RWPromise *curPromise = (RWPromise *)object;
     if ([keyPath isEqualToString:@"state"]) {
         RWPromiseState newState = [change[NSKeyValueChangeNewKey] unsignedIntegerValue];
         if (newState == RWPromiseStateRejected) {
             [object removeObserver:self forKeyPath:@"state"];
             if (self.catchBlock) {
-                self.catchBlock([(RWPromise *) object error]);
+                self.catchBlock(curPromise.error);
                 self.resolveBlock(nil);
             } else {
-                self.rejectBlock([(RWPromise *) object error]);
+                self.rejectBlock(curPromise.error);
             }
         } else if (newState == RWPromiseStateResolved) {
             [object removeObserver:self forKeyPath:@"state"];
             @try {
                 id value = nil;
-                self.valueKeptForRetry = [(RWPromise *) object value];
+                self.valueKeptForRetry = curPromise.value;
                 if (self.thenBlock) {
-                    value = self.thenBlock([(RWPromise *) object value]);
+                    value = self.thenBlock(curPromise.value);
                 } else {
-                    value = [(RWPromise *) object value];
+                    value = curPromise.value;
                 }
                 self.thenBlock = nil;
                 self.resolveBlock(value);
@@ -159,15 +160,7 @@
     }
 }
 
-- (void) resolve:(id)value
-{
-    self.resolveBlock(value);
-}
 
-- (void) reject:(NSError *)error
-{
-    self.rejectBlock(error);
-}
 @end
 
 NSError *promiseErrorWithReason(NSString *reason) {
