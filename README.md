@@ -47,7 +47,7 @@ Using RWPromise is exactly same as using promise in js. `resolve` and `reject` a
 
 For more infomation about the API of promise in js, please reference [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-###Suppoted API
+### Suppoted API
 #### 0.1.0
 - `then`
 - `catch`
